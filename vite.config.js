@@ -4,7 +4,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [vue()],
-  base: 'tinendrakumar.github.io', // Change this to your GitHub repo name
+  base: '/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

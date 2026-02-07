@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, watch } from 'vue'
 
 export default {
   name: 'BaseModal',
@@ -87,16 +87,26 @@ export default {
       }
     }
 
+    const toggleBodyLock = (isLocked) => {
+      document.body.style.overflow = isLocked ? 'hidden' : ''
+    }
+
+    watch(() => props.modelValue, (val) => {
+      toggleBodyLock(val)
+    })
+
     onMounted(() => {
       if (props.closeOnEscape) {
         document.addEventListener('keydown', handleEscape)
       }
-      document.body.style.overflow = 'hidden'
+      if (props.modelValue) {
+        toggleBodyLock(true)
+      }
     })
 
     onUnmounted(() => {
       document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = ''
+      toggleBodyLock(false)
     })
 
     return {

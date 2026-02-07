@@ -193,38 +193,38 @@ export default {
 
 .form-group label {
   font-weight: 600;
-  color: white;
+  color: var(--color-text-primary);
   font-size: 0.875rem;
 }
 
 .form-group input,
 .form-group textarea {
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-border-medium);
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--glass-background);
   backdrop-filter: blur(10px);
-  color: white;
+  color: var(--color-text-primary);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-muted);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #60A5FA;
+  border-color: var(--color-primary-500);
   box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-background-elevated);
 }
 
 .form-group input.error,
 .form-group textarea.error {
-  border-color: #EF4444;
+  border-color: var(--color-error);
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
 }
 
@@ -234,7 +234,7 @@ export default {
 }
 
 .error-message {
-  color: #FCA5A5;
+  color: var(--color-error);
   font-size: 0.75rem;
   margin-top: -0.25rem;
 }

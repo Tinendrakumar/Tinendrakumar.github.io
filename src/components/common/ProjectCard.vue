@@ -78,36 +78,53 @@ export default {
 <style scoped>
 .project-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-background-elevated);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--color-border-light);
   border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-md);
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-400);
 }
 
 .project-card:hover .project-overlay {
   opacity: 1;
 }
 
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
 .project-image {
   height: 200px;
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  background: var(--gradient-primary);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-placeholder {
   color: white;
   opacity: 0.8;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .project-content {
@@ -121,22 +138,25 @@ export default {
 .project-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1E293B;
+  color: var(--color-text-primary);
   margin: 0 0 0.25rem 0;
+  transition: color 0.3s ease;
 }
 
 .project-role {
   font-size: 0.875rem;
-  color: #3B82F6;
+  color: var(--color-primary-500);
   font-weight: 500;
 }
 
 .project-description {
-  color: #64748B;
-  line-height: 1.6;
+  color: var(--color-text-primary);
+  line-height: 1.65;
   margin-bottom: 1.5rem;
+  font-size: 0.9375rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -153,12 +173,24 @@ export default {
 }
 
 .tech-tag {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3B82F6;
-  padding: 0.25rem 0.5rem;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--color-primary-600);
+  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+:global(.dark) .tech-tag {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .project-details {
@@ -174,38 +206,40 @@ export default {
 
 .detail-label {
   font-size: 0.75rem;
-  color: #64748B;
+  color: var(--color-text-muted);
   font-weight: 500;
 }
 
 .detail-value {
   font-size: 0.875rem;
-  color: #1E293B;
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
 .project-highlights {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--color-border-light);
   padding-top: 1rem;
 }
 
 .project-highlights h4 {
-  font-size: 0.875rem;
-  color: #1E293B;
-  margin: 0 0 0.5rem 0;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  margin: 0 0 0.75rem 0;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .project-highlights ul {
   margin: 0;
-  padding-left: 1rem;
-  color: #64748B;
+  padding-left: 1.25rem;
+  color: var(--color-text-primary);
 }
 
 .project-highlights li {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 .project-highlights li:last-child {
@@ -218,22 +252,52 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(59, 130, 246, 0.9);
+  background: rgba(59, 130, 246, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+}
+
+:global(.dark) .project-overlay {
+  background: rgba(59, 130, 246, 0.9);
 }
 
 .overlay-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   color: white;
   font-weight: 600;
+  font-size: 1.125rem;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.overlay-content svg {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @media (max-width: 768px) {

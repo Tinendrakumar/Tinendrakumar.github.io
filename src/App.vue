@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div class="app-layout">
+    <!-- Animated Background sits behind all content -->
     <!-- Animated Background sits behind all content -->
     <div class="bg-elements">
       <div class="floating-element floating-element-1"></div>
@@ -11,12 +12,16 @@
     <!-- The Navbar is always visible and emits events to open overlays -->
     <Navbar @show-overlay="setActiveOverlay" />
 
-    <!-- Main page content rendered by the router (Home, Admin, etc.) -->
-    <router-view @show-overlay="setActiveOverlay" class="main-content-area" />
+    <!-- Main page content rendered by the router (Home, Admin, etc.) with transition -->
+    <router-view v-slot="{ Component }">
+      <transition name="page-fade" mode="out-in">
+        <component :is="Component" @show-overlay="setActiveOverlay" class="main-content-area" />
+      </transition>
+    </router-view>
 
     <!-- Overlay System with Flicker-Prevention Fix -->
     <transition name="fade">
-      <div v-if="activeOverlay" class="overlay-backdrop" @click.self="clearActiveOverlay">
+      <div v-if="activeOverlay" class="overlay-backdrop" :style="{ display: activeOverlay ? 'flex' : 'none' }" @click.self="clearActiveOverlay">
         <transition name="slide-up">
           <component
             :is="activeOverlay"
@@ -170,92 +175,30 @@ export default {
 </script>
 
 <style>
-/* Import global styles */
-@import url('./assets/styles/variables.css');
-@import url('./assets/styles/animations.css');
+/* Global styles are imported in main.js */
 
 /* App-level styles */
-#app {
+.app-layout {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  background-color: var(--color-background-primary);
+  background-color: transparent;
 }
+
+/* Removed html.dark .app-layout background color to prevent double-darkening */
 
 .main-content-area {
   position: relative;
   z-index: 1;
 }
 
-/* Animated Background Elements */
-.bg-elements {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
+/* Main App Structure */
+.main-content-area {
+  position: relative;
+  z-index: 1;
 }
 
-.floating-element {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: float 20s ease-in-out infinite;
-}
-
-.floating-element-1 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-  top: -150px;
-  left: -150px;
-  animation-delay: 0s;
-}
-
-.floating-element-2 {
-  width: 200px;
-  height: 200px;
-  background: linear-gradient(135deg, #F472B6 0%, #FB7185 100%);
-  top: 60%;
-  right: -100px;
-  animation-delay: -5s;
-}
-
-.floating-element-3 {
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(135deg, #6EE7B7 0%, #34D399 100%);
-  bottom: 20%;
-  left: 10%;
-  animation-delay: -10s;
-}
-
-.mesh-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(244, 114, 182, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(110, 231, 183, 0.1) 0%, transparent 50%);
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  33% {
-    transform: translateY(-30px) rotate(120deg);
-  }
-  66% {
-    transform: translateY(20px) rotate(240deg);
-  }
-}
+/* Background Elements moved to main.css/dark-theme.css for better control */
 
 /* CORRECTED OVERLAY STYLES TO PREVENT FLICKERING */
 .overlay-backdrop {
@@ -264,14 +207,18 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   z-index: 1001;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+}
+
+html.dark .overlay-backdrop {
+  background: rgba(10, 14, 26, 0.92);
 }
 
 .overlay-content-wrapper {
@@ -305,6 +252,17 @@ body.overlay-active {
 .slide-up-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+
+/* Page transition */
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
 }
 
 /* Admin login styles */

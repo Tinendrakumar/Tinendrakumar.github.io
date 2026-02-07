@@ -1,49 +1,109 @@
 <template>
   <main class="homepage">
+
     <section class="hero">
       <div class="hero-container">
-        <div class="hero-image">
-          <div class="profile-placeholder">
-            <img
-              src="@/assets/images/1.jpg"
-              alt="Tinendra Kandula"
-              loading="lazy"
-              class="profile-img"
-            />
-          </div>
-        </div>
         <div class="hero-content">
-          <h2 class="hero-title">Hello, I'm Tinendra Kandula</h2>
+          <div class="greeting-pill">
+            <span class="wave">👋</span>
+            <span>Hello, I'm</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Tinendra
+            <span class="text-gradient">Kandula</span>
+          </h1>
+          
+          <div class="typing-container">
+            <span class="typing-text">Machine Learning Engineer</span>
+          </div>
+
+          <div class="specialization-tags">
+            <span class="spec-tag">Generative AI</span>
+            <span class="spec-tag">Multi-modal Learning</span>
+            <span class="spec-tag">NLP</span>
+          </div>
+
+          <p class="hero-description">
+            Building intelligent systems that solve real-world problems with scalable cloud solutions.
+            Passionate about pushing the boundaries of AI and machine learning.
+          </p>
+
           <div class="hero-buttons">
-            <!-- 
-              CORRECTED: This now emits the event directly.
-              This is the standard, reliable Vue way for this component to "talk" to App.vue.
-            -->
             <BaseButton
               variant="primary"
-              @click="$emit('show-overlay', 'Resume')"
-            >
-              RESUME
-            </BaseButton>
-            <BaseButton
-              variant="primary"
+              size="large"
+              class="glow-button"
               @click="$emit('show-overlay', 'Projects')"
             >
-              PROJECTS
+              View Projects
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </BaseButton>
+            
+            <BaseButton
+              variant="outline"
+              size="large"
+              @click="$emit('show-overlay', 'Resume')"
+            >
+              Resume
             </BaseButton>
           </div>
-          <div class="hero-description">
-            <p>{{ personalInfo.intro }}</p>
-            <p>{{ personalInfo.description }}</p>
+
+          <div class="social-links">
+            <a href="https://github.com/Tinendrakumar" target="_blank" class="social-icon" aria-label="GitHub">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/tinendra-kumar/" target="_blank" class="social-icon" aria-label="LinkedIn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="mailto:tinendra.kandula@gmail.com" class="social-icon" aria-label="Email">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
           </div>
         </div>
+
+        <div class="hero-visual">
+          <div class="profile-card">
+            <div class="profile-image-container">
+              <img
+                src="@/assets/images/1.jpg"
+                alt="Tinendra Kandula"
+                class="profile-img"
+              />
+              <div class="profile-glow"></div>
+              <div class="profile-ring"></div>
+            </div>
+            <div class="tech-stack-orbit">
+              <div class="orbit-item item-1">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+              </div>
+              <div class="orbit-item item-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" />
+              </div>
+              <div class="orbit-item item-3">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" />
+              </div>
+              <div class="orbit-item item-4">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator" @click="scrollToContent">
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
       </div>
     </section>
   </main>
 </template>
 
 <script>
-// We only need to import the components and composables we use.
 import BaseButton from '@/components/ui/BaseButton.vue';
 import { useVisitorTracking } from '@/composables/useVisitorTracking';
 import { onMounted } from 'vue';
@@ -53,406 +113,605 @@ export default {
   components: {
     BaseButton,
   },
-  // CRITICAL: Declare the event this component emits. This is Vue 3 best practice.
   emits: ['show-overlay'],
   setup() {
     const { trackPageView } = useVisitorTracking();
     
-    // Your personal info is perfectly fine here.
-    const personalInfo = {
-      intro:
-        'Machine Learning | Generative AI | Multi‑modal ML | NLP',
-      description:
-        'Machine Learning Engineer with a passion for building intelligent systems that solve real-world problems. I specialize in Generative AI, multi-modal learning, and natural language processing, leveraging AWS and SageMaker to deploy scalable solutions.',
+    const getParticleStyle = (index) => {
+      const randomX = Math.random() * 100;
+      const randomY = Math.random() * 100;
+      const randomDuration = 10 + Math.random() * 20;
+      const randomDelay = Math.random() * 5;
+      const randomSize = 2 + Math.random() * 3;
+      
+      return {
+        left: `${randomX}%`,
+        top: `${randomY}%`,
+        width: `${randomSize}px`,
+        height: `${randomSize}px`,
+        animationDuration: `${randomDuration}s`,
+        animationDelay: `${randomDelay}s`
+      };
+    };
+    
+    const scrollToContent = () => {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
     };
 
     onMounted(() => {
-        // The only thing we need to do when the component mounts is track the page view.
-        trackPageView('home');
+      trackPageView('home');
     });
 
-    // We no longer need the complex 'showOverlay' method here.
-    // The template emits the event directly.
-
     return {
-      personalInfo,
+      getParticleStyle,
+      scrollToContent
     };
   },
 };
 </script>
 
 <style scoped>
-/* Aesthetic, responsive, accessible hero styles with fluid typography and smooth interactions */
-
 .homepage {
-  /* CSS variables for easy theming & motion */
-  --bg: linear-gradient(180deg, rgba(250,250,255,0.6), rgba(240,248,255,0.55));
-  --card-bg: rgba(255,255,255,0.85);
-  --glass: rgba(255,255,255,0.35);
-  --primary-600: #3b82f6;
-  --accent-600: #54ab47;
-  --text-primary: #0f172a;
-  --muted: #475569;
-  --radius-lg: 1.5rem;
-  --radius-sm: 0.75rem;
-  --shadow-lg: 0 20px 60px rgba(16,24,40,0.12);
-  --shadow-sm: 0 6px 20px rgba(16,24,40,0.06);
-
-  /* motion timings */
-  --motion-fast: 240ms;
-  --motion-medium: 420ms;
-  --motion-slow: 800ms;
-  --ease-out: cubic-bezier(.2,.9,.3,1);
-
-  min-height: 100svh;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(1rem, 3vw, 3rem);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: transparent;
+  color: var(--color-text-primary);
 }
 
-/* Centered, constrained container that adapts to viewport */
+/* Hero Section */
 .hero {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
-  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
-/* Grid layout that becomes stacked on small viewports */
 .hero-container {
-  /* Responsive grid with flexible columns */
   display: grid;
-  grid-template-columns: minmax(220px, 380px) 1fr;
-  gap: clamp(1.25rem, 3.5vw, 4rem);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.85));
-  border-radius: var(--radius-lg);
+  min-height: 85vh;
+}
+
+/* Hero Content */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.greeting-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  width: fit-content;
   box-shadow: var(--shadow-lg);
-  padding: clamp(1.25rem, 3.75vw, 3rem);
-  width: 100%;
+  animation: slideDown 0.6s ease-out;
+}
+
+.wave {
+  display: inline-block;
+  font-size: 1.5rem;
+  animation: wave 2.5s infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.hero-title {
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+  animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+}
+
+.text-gradient {
+  background: var(--gradient-cosmic);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.text-gradient::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: clamp(4px, 0.5vw, 6px);
+  background: var(--gradient-cosmic);
+  border-radius: 3px;
+  opacity: 0.3;
+}
+
+.typing-container {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: -0.5rem;
+  animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+}
+
+.typing-text::after {
+  content: '|';
+  -webkit-text-fill-color: currentColor;
+  color: var(--color-primary-500);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.specialization-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: -0.5rem;
+  animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
+}
+
+.spec-tag {
+  padding: 0.5rem 1.25rem;
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  font-size: clamp(0.8125rem, 1.5vw, 0.9375rem);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spec-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-300);
+}
+
+.hero-description {
+  font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 580px;
+  margin: 0;
+  animation: slideRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+}
+
+.glow-button {
+  position: relative;
   overflow: hidden;
-  min-height: clamp(48vh, 60vh, 72vh);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: clamp(1.25rem, 3.75vw, 3rem);
-  width: 100%;
-  overflow: hidden;
-  margin-top: 4%;
-  margin-bottom: auto;
-
-  /* entrance animation for the card */
-  animation: cardFadeUp var(--motion-slow) var(--ease-out) both;
-}
-/* Add the <img> element inside the .hero-image in the template, e.g.:
-  <img src="@/assets/images/1.jpg" alt="Tinendra Kandula" loading="lazy" class="profile-img" />
-  Place it alongside the .profile-placeholder (before or after) so the placeholder acts as a fallback.
-*/
-
-.profile-img {
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  box-shadow: 0 24px 48px rgba(16,24,40,0.12);
-  transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
-  will-change: transform;
 }
 
-/* When the image is present hide the initials fallback */
-.profile-img + .profile-placeholder .profile-initials,
-.profile-img ~ .profile-placeholder .profile-initials {
-  opacity: 0 !important;
-  transform: translateY(0) scale(0.98);
-  pointer-events: none;
+.glow-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-primary);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-/* Profile image area with graceful fallback and cover behavior */
-.hero-image {
+
+.glow-button:hover::before {
+  opacity: 0.5;
+  animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
+}
+
+.social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem;
-  position: relative;
-
-  /* subtle pop-in */
-  animation: popIn var(--motion-medium) var(--ease-out) both;
+  width: 44px;
+  height: 44px;
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--color-text-muted);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Profile placeholder with hover and motion */
-.profile-placeholder {
-  --size: clamp(160px, 24vw, 320px);
-  width: var(--size);
-  height: var(--size);
+.social-icon:hover {
+  color: var(--color-primary-500);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-300);
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1.2s ease-out 0.4s backwards;
+}
+
+.profile-card {
+  position: relative;
+  width: clamp(280px, 35vw, 450px);
+  height: clamp(280px, 35vw, 450px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image-container {
+  position: relative;
+  width: clamp(200px, 26vw, 340px);
+  height: clamp(200px, 26vw, 340px);
   border-radius: 50%;
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
-  box-shadow: 0 24px 48px rgba(16,24,40,0.12), inset 0 -6px 18px rgba(0,0,0,0.06);
-  transform: translateZ(0);
-  transition: transform 320ms cubic-bezier(.2,.9,.3,1), box-shadow 320ms;
-  isolation: isolate;
-  image-rendering: -webkit-optimize-contrast;
-
-  will-change: transform;
-  animation: floatEase var(--motion-slow) var(--ease-out) both infinite;
-  animation-duration: 7s;
+  z-index: 2;
+  padding: clamp(8px, 1vw, 12px);
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 2px solid var(--glass-border);
+  box-shadow: var(--shadow-2xl);
 }
 
-/* Use asset via resolver-friendly syntax (webpack / Vite) */
 .profile-img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover;
-  filter: saturate(1.02) contrast(1.03);
-  transition: transform 800ms cubic-bezier(.2,.9,.3,1);
-  will-change: transform;
-  animation: bgSlowShift var(--motion-slow) var(--ease-out) both infinite;
-  animation-duration: 14s;
-}
-/* Subtle hover/tilt interaction */
-.profile-placeholder:hover {
-  transform: translateY(-8px) scale(1.02) rotateZ(0.5deg);
-  box-shadow: 0 40px 80px rgba(16,24,40,0.14);
-}
-.profile-placeholder:hover::before {
-  transform: scale(1.03) translateY(-4px);
+  border: clamp(3px, 0.5vw, 5px) solid transparent;
+  background: var(--gradient-cosmic) border-box;
 }
 
-/* Placeholder initials as fallback (screen-reader-hidden when image present) */
-.profile-initials {
-  position: relative;
-  z-index: 2;
-  font-size: clamp(2.25rem, 4.5vw, 4rem);
-  font-weight: 700;
-  color: rgba(255,255,255,0.95);
-  text-shadow: 0 4px 18px rgba(13, 27, 39, 0.35);
-  letter-spacing: -0.02em;
-  user-select: none;
-
-  /* slight reveal */
-  opacity: 0;
-  transform: translateY(8px) scale(0.98);
-  animation: textReveal var(--motion-medium) var(--ease-out) both;
-  animation-delay: 120ms;
-}
-
-/* Content column */
-.hero-content {
-  max-width: 720px;
-}
-
-/* Fluid typography */
-.hero-title {
-  font-size: clamp(2.25rem, 2.5vw, 4rem);
-  line-height: 1.02;
-  margin: 0 0 0.4rem 0;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  display: block;
-  text-wrap: balance;
-  transform-origin: left;
-  margin-bottom: 4%;
-
-  opacity: 0;
-  transform: translateY(14px) scale(0.992);
-  animation: headingSlide var(--motion-medium) var(--ease-out) both;
-  animation-delay: 80ms;
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 2.25vw, 1.25rem);
-  color: var(--muted);
-  margin: 0 0 0.5rem 0;
-  font-weight: 600;
-
-  opacity: 0;
-  transform: translateY(12px);
-  animation: headingSlide var(--motion-medium) var(--ease-out) both;
-  animation-delay: 160ms;
-}
-
-.hero-greeting {
-  font-size: clamp(0.98rem, 2vw, 1.125rem);
-  color: var(--text-primary);
-  margin: 0 0 1rem 0;
-  opacity: 0.95;
-
-  opacity: 0;
-  transform: translateY(10px);
-  animation: headingSlide var(--motion-medium) var(--ease-out) both;
-  animation-delay: 240ms;
-}
-
-/* Buttons container with responsive wrapping */
-.hero-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin: 0.75rem 0 1.25rem 0;
-  flex-wrap: wrap;
-  align-items: center;
-
-  opacity: 0;
-  transform: translateY(6px);
-  animation: headingSlide var(--motion-medium) var(--ease-out) both;
-  animation-delay: 320ms;
-}
-
-/* Buttons inside may receive subtle hover lift via CSS; rely on component for primary styles */
-.hero-buttons > * {
-  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
-}
-.hero-buttons > *:hover {
-  transform: translateY(-4px);
-}
-
-/* Description card with nice scroll, contrast and accessible sizing */
-.hero-description {
-  color: var(--text-primary);
-  line-height: 1.65;
-  border-left: 5px solid rgba(0,0,0,0.06);
-  padding: clamp(1rem, 2.5vw, 1.5rem);
-  background: linear-gradient(100deg, rgba(59,130,246,0.06) 0%, rgba(84,171,71,0.04) 100%);
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--radius-sm);
-  margin-top: 0.75rem;
-  max-height: min(36vh, 340px);
-  overflow-y: auto;
-  position: relative;
-  transition: box-shadow 240ms ease, transform 240ms ease;
-  will-change: transform, box-shadow;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: cardFadeUp var(--motion-medium) var(--ease-out) both;
-  animation-delay: 40ms;
-}
-
-/* Thin custom scrollbar for the description */
-.hero-description::-webkit-scrollbar {
-  width: 10px;
-}
-.hero-description::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(59,130,246,0.35), rgba(84,171,71,0.25));
-  border-radius: 999px;
-}
-.hero-description::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Paragraphs */
-.hero-description p {
-  margin: 0 0 0.9rem 0;
-  font-size: clamp(0.98rem, 1.6vw, 1.05rem);
-  color: var(--muted);
-}
-.hero-description p:last-child {
-  margin-bottom: 0;
-}
-
-/* Small decorative vertical accent */
-.hero-description::before {
-  content: "";
+.profile-glow {
   position: absolute;
-  left: 8px;
-  top: 8px;
-  bottom: 8px;
-  width: 6px;
-  border-radius: 6px;
-  background: linear-gradient(180deg, var(--primary-600), var(--accent-600));
-  opacity: 0.95;
+  inset: clamp(-20px, -3vw, -40px);
+  background: var(--gradient-cosmic);
+  filter: blur(clamp(30px, 5vw, 60px));
+  opacity: 0.4;
+  z-index: -1;
+  border-radius: 50%;
+  animation: pulse-glow 4s infinite ease-in-out;
 }
 
-/* Motion & accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .profile-placeholder,
-  .profile-placeholder::before,
-  .profile-placeholder:hover,
-  .hero-description,
-  .hero-title,
-  .hero-subtitle,
-  .hero-greeting,
-  .hero-buttons,
-  .hero-container,
-  .profile-initials {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
+@keyframes pulse-glow {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.1);
   }
 }
 
-/* Responsive stacking for small screens */
-@media (max-width: 880px) {
+.profile-ring {
+  position: absolute;
+  inset: clamp(-10px, -2vw, -20px);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: var(--gradient-cosmic) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  animation: ring-spin 10s linear infinite;
+}
+
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.tech-stack-orbit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: orbit-spin 30s linear infinite;
+}
+
+.orbit-item {
+  position: absolute;
+  width: clamp(48px, 6vw, 64px);
+  height: clamp(48px, 6vw, 64px);
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 2px solid var(--glass-border);
+  border-radius: clamp(12px, 2vw, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xl);
+  padding: clamp(8px, 1.2vw, 12px);
+  animation: orbit-spin-reverse 30s linear infinite;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-item:hover {
+  transform: scale(1.15);
+  box-shadow: var(--shadow-2xl);
+  border-color: var(--color-primary-300);
+  z-index: 10;
+}
+
+.orbit-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.item-1 { top: -5%; left: 50%; transform: translate(-50%, -50%); }
+.item-2 { top: 50%; right: -5%; transform: translate(50%, -50%); }
+.item-3 { bottom: -5%; left: 50%; transform: translate(-50%, 50%); }
+.item-4 { top: 50%; left: -5%; transform: translate(-50%, -50%); }
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.6;
+  animation: fadeIn 1.2s ease-out 1.5s backwards;
+  transition: opacity 0.3s;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.mouse {
+  width: 28px;
+  height: 44px;
+  border: 2px solid var(--color-text-secondary);
+  border-radius: 20px;
+  position: relative;
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+}
+
+.wheel {
+  width: 4px;
+  height: 10px;
+  background: var(--color-text-secondary);
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-wheel 1.5s infinite;
+}
+
+@keyframes scroll-wheel {
+  0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(14px); opacity: 0; }
+}
+
+.scroll-indicator span {
+  font-size: clamp(0.75rem, 1.2vw, 0.8125rem);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
   .hero-container {
     grid-template-columns: 1fr;
-    gap: clamp(1rem, 4vw, 2.2rem);
-    padding: clamp(1rem, 5vw, 1.6rem);
-    min-height: auto;
-  }
-
-  .hero-image {
-    margin-top: 0.25rem;
+    text-align: center;
+    gap: 3rem;
   }
 
   .hero-content {
-    text-align: center;
+    align-items: center;
   }
 
+  .greeting-pill,
+  .specialization-tags,
   .hero-description {
-    max-height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    order: -1;
   }
 }
 
-/* Small tweaks for very narrow screens */
-@media (max-width: 420px) {
-  .profile-placeholder { --size: 140px; }
-  .hero-title { font-size: 1.9rem; }
-  .hero-buttons { justify-content: center; gap: 0.5rem; }
+@media (max-width: 768px) {
+  .homepage {
+    padding: 1rem;
+  }
+
+  .hero-container {
+    min-height: auto;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  .hero-content {
+    gap: 1.25rem;
+  }
+
+  .text-gradient::after {
+    display: none;
+  }
+
+  .typing-container {
+    margin-top: -0.25rem;
+  }
+
+  .specialization-tags {
+    margin-top: 0;
+  }
+
+  .scroll-indicator {
+    bottom: 1rem;
+  }
+
+  .scroll-indicator span {
+    display: none;
+  }
 }
 
-/* -------------------
-   Keyframes (animations)
-   ------------------- */
-@keyframes cardFadeUp {
-  0% { opacity: 0; transform: translateY(18px) scale(0.996); }
-  60% { opacity: 1; transform: translateY(-6px) scale(1.002); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+@media (max-width: 480px) {
+  .greeting-pill {
+    padding: 0.625rem 1.25rem;
+  }
+
+  .specialization-tags {
+    gap: 0.5rem;
+  }
+
+  .spec-tag {
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .hero-buttons > * {
+    width: 100%;
+  }
+
+  .orbit-item {
+    width:40px;
+    height: 40px;
+    padding: 6px;
+  }
+
+  .item-1 { top: -3%; }
+  .item-2 { right: -3%; }
+  .item-3 { bottom: -3%; }
+  .item-4 { left: -3%; }
 }
 
-@keyframes popIn {
-  0% { opacity: 0; transform: translateY(18px) scale(0.96); }
-  60% { opacity: 1; transform: translateY(-4px) scale(1.01); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes floatEase {
-  0% { transform: translateY(0) rotateZ(0); }
-  50% { transform: translateY(-6px) rotateZ(0.3deg); }
-  100% { transform: translateY(0) rotateZ(0); }
-}
-
-@keyframes bgSlowShift {
-  0% { transform: scale(1) translateY(0); filter: saturate(1.02) contrast(1.03); }
-  50% { transform: scale(1.02) translateY(-8px); filter: saturate(1.08) contrast(1.05); }
-  100% { transform: scale(1) translateY(0); filter: saturate(1.02) contrast(1.03); }
-}
-
-@keyframes headingSlide {
-  0% { opacity: 0; transform: translateY(14px) scale(0.994); }
-  60% { opacity: 1; transform: translateY(-2px) scale(1.002); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes textReveal {
-  0% { opacity: 0; transform: translateY(10px) scale(0.98); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .blob,
+  .particle,
+  .gradient-mesh,
+  .tech-stack-orbit,
+  .orbit-item,
+  .profile-ring {
+    animation: none !important;
+  }
 }
 </style>

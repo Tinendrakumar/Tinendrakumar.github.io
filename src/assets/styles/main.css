@@ -15,18 +15,59 @@ body {
   height: 100%;
 }
 
+/* CSS Variables - Consolidated for Robustness */
+/* CSS Variables are handled in variables.css */
+/* :root { ... } removed to prevent duplicates */
+
+html.dark {
+  /* Variables handled in variables.css and dark-theme.css */
+}
+
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #FEFCE8;
-  color: #1E293B;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  /* transition: background-color 0.3s ease, color 0.3s ease; REMOVED */
 }
 
-img,
-picture,
-video,
-canvas,
+/* Dark Mode Overrides */
+html.dark {
+  /* Force Bright Text Variables */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E2E8F0;
+  --color-text-muted: #CBD5E1;
+  --color-background-primary: #0A0E1A;
+  background-color: #0A0E1A !important;
+}
+
+html.dark body {
+  background-color: var(--color-background-primary) !important;
+  background: var(--color-background-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Background elements handled exclusively in dark-theme.css */
+
+/* Force high contrast text */
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: var(--color-text-primary) !important;
+  text-shadow: 0 0 20px rgba(255,255,255,0.1); 
+}
+
+html.dark p, html.dark span, html.dark div, html.dark li, html.dark a {
+  color: inherit;
+}
+
+/* Fix potential text gradient issues in dark mode */
+html.dark .text-gradient {
+  -webkit-text-fill-color: unset !important;
+  background: linear-gradient(135deg, #E2E8F0 0%, #FFFFFF 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
 svg {
   display: block;
   max-width: 100%;
@@ -50,26 +91,7 @@ h6 {
 }
 
 /* CSS Variables */
-:root {
-  /* Modern Color Palette */
-  --color-primary: #0F172A;
-  --color-secondary: #FEFCE8;
-  --color-accent-1: #3B82F6;
-  --color-accent-2: #F472B6;
-  --color-accent-3: #6EE7B7;
-  --color-text-primary: #1E293B;
-  --color-text-secondary: #F1F5F9;
-  --color-glass-bg: rgba(255, 255, 255, 0.1);
-  --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-  --gradient-secondary: linear-gradient(135deg, #F472B6 0%, #FB7185 100%);
-
-  /* Animation Variables */
-  --duration-fast: 0.15s;
-  --duration-normal: 0.3s;
-  --duration-slow: 0.5s;
-  --easing-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
+/* CSS Variables are now handled in variables.css */
 
 /* Utility Classes */
 .animate-in {
@@ -95,9 +117,9 @@ h6 {
 
 /* Glassmorphism Elements */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
   border-radius: 1rem;
 }
 
@@ -127,21 +149,13 @@ p {
 
 /* Focus Styles */
 *:focus {
-  outline: 2px solid var(--color-accent-1);
+  outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
 }
 
 button:focus,
 a:focus {
   outline-offset: 4px;
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: var(--color-primary);
-    color: var(--color-text-secondary);
-  }
 }
 
 /* Reduced Motion */
@@ -153,6 +167,25 @@ a:focus {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Global Overlay Page Styles */
+.overlay-page {
+  color: var(--color-text-primary);
+  background: transparent;
+}
+
+
+
+.overlay-page h1,
+.overlay-page h2,
+.overlay-page h3,
+.overlay-page h4 {
+  color: var(--color-text-primary);
+}
+
+.overlay-page p {
+  color: var(--color-text-secondary);
 }
 
 /* Print Styles */
@@ -168,10 +201,4 @@ a:focus {
   }
 }
 
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  .glass {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid white;
-  }
-}
+/* Dark Mode Theme handled by variables above */

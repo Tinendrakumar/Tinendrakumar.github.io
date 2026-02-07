@@ -7,25 +7,33 @@
         </router-link>
         <div class="brand-underline"></div>
       </div>
-      <ul class="nav-menu">
-        <li v-for="item in navItems" :key="item.name">
-          <a
-            href="#"
-            class="nav-link"
-            @click.prevent="$emit('show-overlay', item.route)"
-          >
-            <span class="nav-text">{{ item.name }}</span>
-            <div class="nav-hover-effect"></div>
-          </a>
-        </li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-menu">
+          <li v-for="item in navItems" :key="item.name">
+            <a
+              href="#"
+              class="nav-link"
+              @click.prevent="$emit('show-overlay', item.route)"
+            >
+              <span class="nav-text">{{ item.name }}</span>
+              <div class="nav-hover-effect"></div>
+            </a>
+          </li>
+        </ul>
+        <ThemeToggle />
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
+import ThemeToggle from '@/components/ui/ThemeToggle.vue'
+
 export default {
   name: 'Navbar',
+  components: {
+    ThemeToggle
+  },
   emits: ['show-overlay'],
   data() {
     return {
@@ -46,12 +54,17 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--glass-background);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+  border-bottom: 1px solid var(--color-border-light);
   z-index: 1000;
   transition: all 0.3s ease;
+}
+
+:global(.dark) .navbar {
+  background: var(--glass-background);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .nav-container {
@@ -63,6 +76,12 @@ export default {
   margin: 0 auto;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .nav-brand {
   position: relative;
   cursor: pointer;
@@ -71,11 +90,12 @@ export default {
 .brand-text {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1e293b;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color: var(--color-text-primary);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-decoration: none;
 }
 
 .brand-underline {
@@ -84,7 +104,7 @@ export default {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: var(--gradient-primary);
   transform: scaleX(0);
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   transform-origin: left;
@@ -106,7 +126,7 @@ export default {
   position: relative;
   display: block;
   padding: 0.5rem 0;
-  color: #475569;
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;
@@ -116,8 +136,16 @@ export default {
   overflow: hidden;
 }
 
+:global(.dark) .nav-link {
+  color: var(--color-text-secondary);
+}
+
 .nav-link:hover {
-  color: #3b82f6;
+  color: var(--color-primary-500);
+}
+
+:global(.dark) .nav-link:hover {
+  color: var(--color-primary-400);
 }
 
 .nav-hover-effect {
@@ -126,7 +154,7 @@ export default {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: var(--gradient-primary);
   transform: translateX(-101%);
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -141,6 +169,12 @@ export default {
     flex-direction: column;
     gap: 1rem;
   }
+  
+  .nav-right {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
   .nav-menu {
     gap: 1.5rem;
   }

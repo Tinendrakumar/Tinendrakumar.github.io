@@ -1,0 +1,151 @@
+/* Dark Mode Overrides - Loaded last to ensure precedence */
+
+/* 1. Force the HTML and Body background - SOLID COLOR */
+html.dark, 
+body.dark {
+  background-color: var(--color-background-primary) !important;
+  color-scheme: dark;
+}
+
+html.dark,
+html.dark body {
+  background-color: var(--color-background-primary) !important;
+  color: var(--color-text-primary) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  transition: none !important;
+}
+
+/* Kill pseudo-element overlays on root */
+html.dark::before,
+html.dark::after,
+html.dark body::before,
+html.dark body::after {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* 2. Force Dark Mode Variables */
+html.dark {
+  --color-text-primary: #FFFFFF !important;
+  --color-text-secondary: #E2E8F0 !important;
+  --color-text-muted: #CBD5E1 !important;
+  --color-background-primary: #0A0E1A !important;
+  
+  /* Lighter, more vibrant gradients for dark mode puffs */
+  --gradient-primary: linear-gradient(135deg, #60A5FA 0%, #C084FC 100%) !important;
+  --gradient-cosmic: linear-gradient(135deg, #C084FC 0%, #F472B6 100%) !important;
+}
+
+/* 3. RESTORE: Premium Background Aesthetics (Isolated) */
+html.dark .bg-elements {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0.15 !important;
+  z-index: -9999 !important; /* Keep fundamentally behind everything */
+  pointer-events: none !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-background-primary) !important;
+}
+
+html.dark .floating-element {
+  opacity: 0.15 !important;
+  filter: blur(80px) !important;
+  display: block !important;
+}
+
+html.dark .mesh-gradient {
+  display: block !important;
+  opacity: 0.1 !important;
+}
+
+/* Restore backdrop-filter ONLY for non-root elements */
+/* Restore backdrop-filter ONLY for specific glass elements - handled by utility classes */
+/* html.dark *:not(html):not(body) rule REMOVED as it acts as a global blur bomb */
+
+/* Ensure app root is clean but allows background to show */
+html.dark .app-layout {
+  position: relative;
+  z-index: 1; 
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+/* Force Main Content Area above background */
+html.dark .main-content-area,
+html.dark main,
+html.dark section {
+  position: relative !important;
+  z-index: 10 !important; /* Explicitly above background */
+}
+
+/* 6. Force high contrast text on Headings AND Paragraphs */
+html.dark h1:not(.text-gradient), 
+html.dark h2:not(.text-gradient), 
+html.dark h3:not(.text-gradient), 
+html.dark h4:not(.text-gradient), 
+html.dark h5:not(.text-gradient), 
+html.dark h6:not(.text-gradient),
+html.dark p,
+html.dark span:not(.text-gradient),
+html.dark div:not(.text-gradient):not(.bg-elements):not(.floating-element),
+html.dark .homepage, /* Targeting Scoped Wrapper */
+html.dark .section   /* Targeting Section Wrappers */
+{
+  color: var(--color-text-primary) !important;
+}
+
+/* Explicit overrides for specific Scoped classes */
+html.dark .hero-title {
+  color: var(--color-text-primary) !important;
+}
+html.dark .hero-description {
+  color: var(--color-text-secondary) !important;
+}
+html.dark .name, 
+html.dark .title, 
+html.dark .heading {
+  color: var(--color-text-primary) !important;
+}
+
+html.dark .typing-text {
+  /* Ensure gradient text is visible - Silver to White */
+  background: linear-gradient(135deg, var(--color-text-secondary) 0%, var(--color-text-primary) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* 7. Disable problematic transitions that might cause opacity/rendering issues */
+/* 7. Allow transitions (Removed aggressive override) */
+/* html.dark * {
+  transition-property: background-color, border-color !important;
+} - REMOVED */
+
+/* 8. Fix Text Gradients Specifics */
+html.dark .text-gradient,
+html.dark .typing-text {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; 
+  color: transparent; 
+}
+
+/* 9. General Text Formatting overrides */
+html.dark button,
+html.dark input,
+html.dark a {
+  color: inherit;
+}
+
+html.dark .description, 
+html.dark .subtitle {
+  color: var(--color-text-secondary) !important;
+}

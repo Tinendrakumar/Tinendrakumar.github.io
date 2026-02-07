@@ -1,5 +1,16 @@
 <template>
   <div class="overlay-page projects-page">
+    <!-- Premium Matrix Background -->
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="matrix-rain">
+        <div v-for="i in 25" :key="i" class="matrix-column" :style="{ left: `${i * 4}%`, animationDelay: `${Math.random() * 3}s` }">
+          <span v-for="j in 20" :key="j">{{ '{ } : ; < > / * + - = ( )'.split(' ')[Math.floor(Math.random() * 12)] }}</span>
+        </div>
+      </div>
+      <div class="code-grid"></div>
+    </div>
 
     <div class="overlay-content">
       <!-- Header with close button -->
@@ -144,7 +155,6 @@ export default {
   max-width: 1400px;
   margin: 0 auto;
   animation: slideInUp 0.5s ease-out;
-  background: transparent;
 }
 
 /* Premium Matrix Background */
@@ -253,7 +263,7 @@ export default {
   align-items: center;
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   padding-bottom: clamp(1rem, 2vw, 1.5rem);
-  border-bottom: 2px solid var(--color-border-light);
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
 }
 
 .overlay-title {
